@@ -1,0 +1,109 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://media.istockphoto.com/id/1151915829/vector/health-care-icon-pattern-medical-innovation-concept-background-design.jpg?s=612x612&w=0&k=20&c=FJPhXY-fMHbgNfgJXbsLux8MrKI6nehtpBUd0OHOvRM=') no-repeat center center/cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container */
+.container {
+    width: 45%;
+    background: rgba(255, 255, 255, 0.95) transparent;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+/* Title */
+h1 {
+    color: #007BFF;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 15px;
+    color: #b6abab;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Form Styles */
+label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 12px;
+    color: #b5b2b2;
+}
+
+select, input, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+select, input {
+    background: #f9f9f9;
+}
+
+/* Buttons */
+button {
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #0056b3, #003c7c);
+}
+
+/* Analyze Button */
+.analyze-btn {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #28a745, #1c7b2d);
+}
+
+.analyze-btn:hover {
+    background: linear-gradient(135deg, #1c7b2d, #155724);
+}
+
+/* Selected Symptoms Display */
+#symptoms {
+    background: #eef4ff;
+    border-left: 5px solid #007BFF;
+    font-weight: bold;
+}
+
+/* Result Box */
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(40, 167, 69, 0.2);
+    border-left: 5px solid #28a745;
+    color: #bbf6c9;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}

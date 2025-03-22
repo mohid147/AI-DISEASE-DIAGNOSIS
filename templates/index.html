@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Disease Diagnosis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Disease Diagnosis</h1>
+        <p class="description">
+            Enter your symptoms, and our AI will predict the possible disease based on machine learning analysis.
+            Please select a disease from the list to see common symptoms, or manually choose symptoms.
+        </p>
+
+        <form action="/predict" method="POST">
+            <!-- Disease Selection -->
+            <label for="disease-select">Select a Disease:</label>
+            <select id="disease-select" name="disease" onchange="updateSymptoms()">
+                <option value="">-- Select a Disease --</option>
+                {% for disease in diseases %}
+                <option value="{{ disease }}">{{ disease }}</option>
+                {% endfor %}
+            </select>
+
+            <!-- Symptoms Selection -->
+            <label for="symptom-select">Select Symptoms:</label>
+            <select id="symptom-select">
+                <option value="">-- Select a Symptom --</option>
+                {% for symptom in symptoms %}
+                <option value="{{ symptom }}">{{ symptom }}</option>
+                {% endfor %}
+            </select>
+            <button type="button" onclick="addSymptom()">Add Symptom</button>
+
+            <!-- Selected Symptoms Display -->
+            <label for="symptoms">Selected Symptoms:</label>
+            <input type="text" id="symptoms" name="symptoms" placeholder="Selected symptoms will appear here" readonly>
+
+            <button type="submit" class="analyze-btn">Analyze</button>
+        </form>
+        
+        {% if result %}
+            <div class="result">
+                <h2>Diagnosis Result:</h2>
+                <p>{{ result }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function addSymptom() {
+            let select = document.getElementById("symptom-select");
+            let input = document.getElementById("symptoms");
+            let symptom = select.value;
+
+            if (symptom && !input.value.includes(symptom)) {
+                input.value += (input.value ? ", " : "") + symptom;
+            }
+        }
+
+        function updateSymptoms() {
+            let disease = document.getElementById("disease-select").value;
+            fetch(`/get_symptoms?disease=${disease}`)
+                .then(response => response.json())
+                .then(data => {
+                    let symptomSelect = document.getElementById("symptom-select");
+                    symptomSelect.innerHTML = '<option value="">-- Select a Symptom --</option>';
+                    data.forEach(symptom => {
+                        let option = document.createElement("option");
+                        option.value = symptom;
+                        option.textContent = symptom;
+                        symptomSelect.appendChild(option);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
